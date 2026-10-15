@@ -13,7 +13,7 @@ library(openxlsx)
 # Set GITHUB_PAT in your .Renviron file (see README for instructions).
 rose_red_hex <- "#C21E56"
 github_url   <- "https://raw.githubusercontent.com/mhajihos/CVC_ICD_Rep/main/backupfile.xlsx"
-my_token     <- Sys.getenv("GITHUB_PAT")   # ← reads from .Renviron, not hardcoded
+my_token     <- Sys.getenv("GITHUB_PAT")   
 
 # ── UI ────────────────────────────────────────────────────────────────────────
 ui <- navbarPage(
