@@ -170,13 +170,53 @@ The existing `app.R` contains a hardcoded GitHub PAT. To remove it safely:
 
 ---
 
+## Enhanced R Shiny App — All Capabilities in One File
+
+If you prefer to keep everything in R rather than running the separate FastAPI + React
+stack, `app_R_fixed.R` is a drop-in replacement for the original `app.R` that includes
+**all capabilities** in a single Shiny app with three tabs:
+
+| Tab | Capability |
+|-----|-----------|
+| **Explore Medical Case Definitions** | Original filtered view of the curated `backupfile.xlsx` |
+| **Free-Text ICD Search** *(new)* | Two-panel search — CVC curated matches (left) + full WHO ICD-11 & NLM ICD-10-CM universe (right), with source badges, external links, error banners, and a two-sheet Excel export |
+| **PubMed Search** | Original literature search |
+
+It calls the WHO ICD-11 and NLM ICD-10-CM APIs natively from R via `httr`, including the
+WHO OAuth2 token flow with in-memory caching and 401 refresh — the same logic as the
+FastAPI backend, but self-contained.
+
+### Setup for the enhanced Shiny app
+
+1. Create `.Renviron` in the project root (never commit it):
+   ```
+   GITHUB_PAT=your-github-pat
+   WHO_CLIENT_ID=your-who-client-id
+   WHO_CLIENT_SECRET=your-who-client-secret
+   ```
+2. Install the required packages:
+   ```r
+   install.packages(c("shiny","readxl","dplyr","httr","writexl",
+                      "DT","xml2","jsonlite","openxlsx"))
+   ```
+3. Run it:
+   ```r
+   shiny::runApp("app_R_fixed.R")
+   ```
+
+> If WHO credentials are not set, the Free-Text ICD Search tab still works —
+> it shows CVC + NLM ICD-10-CM results and simply skips the ICD-11 source.
+
+---
+
 ## Project Structure
 
 ```
 cvc-explorer-v2/
-├── .env.example          # Template for secrets
+├── .env.example          # Template for secrets (FastAPI stack)
 ├── .gitignore
 ├── README.md
+├── app_R_fixed.R         # ★ All-in-one enhanced R Shiny app (3 tabs)
 ├── backend/
 │   ├── main.py           # FastAPI app + all routes
 │   ├── config.py         # Settings from .env
@@ -191,6 +231,7 @@ cvc-explorer-v2/
 │       └── test_unified_search.py
 └── frontend/
     ├── vite.config.ts    # Vite + proxy config
+    ├── vitest.config.ts  # Vitest test config
     ├── src/
     │   ├── App.tsx        # Main app shell
     │   ├── components/
