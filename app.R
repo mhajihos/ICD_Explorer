@@ -9,10 +9,6 @@ library(jsonlite)
 library(openxlsx)
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-# All credentials come from environment variables (.Renviron) — never hardcoded.
-#   GITHUB_PAT         GitHub token to fetch backupfile.xlsx (repo:read scope)
-#   WHO_CLIENT_ID      WHO ICD-11 API client id   (https://icd.who.int/icdapi)
-#   WHO_CLIENT_SECRET  WHO ICD-11 API client secret
 rose_red_hex <- "#C21E56"
 navy_hex     <- "#0d2f45"
 green_hex    <- "#007C41"
