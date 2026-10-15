@@ -1,12 +1,12 @@
 # ── WHO ICD-11 API ───────────────────────────────────────────────────────────
 # Register at https://icd.who.int/icdapi to obtain these credentials.
-WHO_CLIENT_ID= "c825729e-3b71-4c3e-bd60-9c5b7456cf85_0e6444c3-a542-49cf-a48f-b1cf47e9aca7"
-WHO_CLIENT_SECRET="AWwQ/yHLIVlngc207ug/A0G2Ne350KTNgTgqiEbpC8g="
+WHO_CLIENT_ID= c825729e-3b71-4c3e-bd60-9c5b7456cf85_0e6444c3-a542-49cf-a48f-b1cf47e9aca7
+WHO_CLIENT_SECRET=AWwQ/yHLIVlngc207ug/A0G2Ne350KTNgTgqiEbpC8g=
 
 # ── GitHub Personal Access Token ─────────────────────────────────────────────
 # Required to fetch backupfile.xlsx from the private GitHub repo.
 # Generate at https://github.com/settings/tokens (needs repo:read scope).
-GITHUB_PAT="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"
+GITHUB_PAT=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
 
 # ── Optional: override the backupfile URL ────────────────────────────────────
 CVC_XLSX_URL=https://raw.githubusercontent.com/mhajihos/ICD_Explorer/main/backupfile.xlsx
