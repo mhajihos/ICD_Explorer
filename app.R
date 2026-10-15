@@ -77,7 +77,7 @@ split_terms <- function(query) {
   gsub("<[^>]+>", "", as.character(x))
 }
 
-who_search <- function(query, limit = 15) {
+who_search <- function(query, limit = 50) {
   if (!nzchar(trimws(query))) return(data.frame())
   token <- tryCatch(who_get_token(), error = function(e) NULL)
   if (is.null(token)) return(data.frame())
@@ -124,7 +124,7 @@ who_search <- function(query, limit = 15) {
 }
 
 # ── NLM ICD-10-CM API helper (no auth) ───────────────────────────────────────────
-nlm_search <- function(query, limit = 20) {
+nlm_search <- function(query, limit = 50) {
   if (!nzchar(trimws(query))) return(data.frame())
   resp <- GET(
     "https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search",
